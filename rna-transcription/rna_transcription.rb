@@ -3,19 +3,18 @@ module BookKeeping
 end
 
 class Complement
-  def self.comp_map
-    {
-      'G' => 'C',
-      'C' => 'G',
-      'T' => 'A',
-      'A' => 'U',
-    }
-  end
+  DNA_TO_RNA = {
+    'G' => 'C',
+    'C' => 'G',
+    'T' => 'A',
+    'A' => 'U',
+  }
 
   def self.of_dna(strand)
-    strand.split('').reduce('') do |memo, letter|
-      if comp_map[letter]
-        memo += comp_map[letter]
+    strand.split('').reduce('') do |rna, nucleotide|
+
+      if DNA_TO_RNA[nucleotide]
+        rna << DNA_TO_RNA[nucleotide]
       else
         return ''
       end
